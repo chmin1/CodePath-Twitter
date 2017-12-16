@@ -11,9 +11,13 @@ import Foundation
 class User {
     
     var name: String
+    var screenName: String
+    var imageURL: String
     
     init(dictionary: [String: Any]) {
         name = dictionary["name"] as! String
-
+        screenName = dictionary["screen_name"] as! String
+        let image = dictionary["profile_image_url_https"] as! String
+        imageURL = String((image.characters.dropLast(11))) + ".jpg"
     }
 }
