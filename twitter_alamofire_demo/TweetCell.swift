@@ -79,6 +79,77 @@ class TweetCell: UITableViewCell {
         
     }
     
+    @IBAction func didTapRT(_ sender: Any) {
+        
+        if (RTButton.isSelected != true) {
+            
+            RTButton.isSelected = true
+            tweet.retweeted = true
+            tweet.retweetCount += 1
+            self.RTLabel.text = String(tweet.retweetCount)
+            
+            //APIManager Request from Cell
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        } else if (RTButton.isSelected == true) {
+            RTButton.isSelected = false
+            tweet.retweeted = false
+            tweet.retweetCount -= 1
+            self.RTLabel.text = String(tweet.retweetCount)
+            
+            //APIManager Request from Cell
+            APIManager.shared.unretweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }
+
+        
+    }
+    
+    @IBAction func didTapFav(_ sender: Any) {
+        
+        if (favButton.isSelected != true) {
+            
+            favButton.isSelected = true
+            tweet.favorited = true
+            tweet.favoriteCount! += 1
+            self.favLabel.text = String(tweet.favoriteCount!)
+            
+            //APIManager Request from Cell
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        } else if (favButton.isSelected == true) {
+            favButton.isSelected = false
+            tweet.favorited = false
+            tweet.favoriteCount! -= 1
+            self.favLabel.text = String(describing: tweet.favoriteCount)
+            
+            //APIManager Request from Cell
+            APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }
+        
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
