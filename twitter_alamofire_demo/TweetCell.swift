@@ -91,9 +91,9 @@ class TweetCell: UITableViewCell {
             //APIManager Request from Cell
             APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error Retweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
                 }
             }
         } else if (RTButton.isSelected == true) {
@@ -105,9 +105,9 @@ class TweetCell: UITableViewCell {
             //APIManager Request from Cell
             APIManager.shared.unretweet(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error UnRetweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
                 }
             }
         }
@@ -141,9 +141,9 @@ class TweetCell: UITableViewCell {
             //APIManager Request from Cell
             APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error unfavoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
                 }
             }
         }
