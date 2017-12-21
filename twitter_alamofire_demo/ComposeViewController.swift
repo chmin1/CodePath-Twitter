@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
@@ -24,11 +25,15 @@ class ComposeViewController: UIViewController {
     
     @IBOutlet weak var tweetButton: UIButton!
     
+    let user = User.current!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         profileImage.layer.masksToBounds = true;
         profileImage.layer.cornerRadius = 30;
+        profileImage.af_setImage(withURL: URL(string: user.imageURL)!)
+        
         cancelButton.layer.masksToBounds = true;
         tweetButton.layer.masksToBounds = true;
         cancelButton.layer.cornerRadius = 15;
